@@ -1,6 +1,6 @@
 # RFC: iOS Simulator text-to-speech microphone injection
 
-Status: **Proposal / investigation — not implemented**
+Status: **Experimental implementation for local iOS Simulator**
 
 ## Motivation
 Voice-driven applications need a black-box E2E command that exercises the microphone and actual speech-recognition pipeline. Injecting text into an input field or playing audio on the host does not test that pipeline.
@@ -27,7 +27,7 @@ Follow the repository's documented command path:
 - iOS-specific implementation: host-side TTS and a validated audio-input route to the booted simulator.
 - `maestro-test`: parsing, dispatch and failure-mode tests using FakeDriver.
 
-**Important:** iOS Simulator audio-input injection is not yet proven. Do not claim that `say`, AVSpeechSynthesizer, or host speaker playback feeds the simulator microphone. First create a minimal test app using AVAudioEngine input tap, record the received samples, and confirm that injected speech reaches that input.
+The prototype feeds macOS speech into BlackHole 2ch and verifies the target Simulator input route before playback. It does not change the host audio defaults.
 
 ## Proof-of-concept acceptance gate
 
@@ -53,4 +53,4 @@ This is a Type B feature per CONTRIBUTING.md: request design feedback before a l
 
 ## Current state
 
-Design proposal only. No working microphone injection, new YAML parser, or simulator integration is included in this branch yet.
+The [local microphone fixture](../../experiments/ios-speech-injection/README.md) exercises the YAML command and records the result from the Simulator microphone. Parallel isolation and hosted Cloud support remain open.

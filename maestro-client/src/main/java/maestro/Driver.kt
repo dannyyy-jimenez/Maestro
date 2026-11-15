@@ -70,6 +70,10 @@ interface Driver {
 
     fun inputText(text: String)
 
+    fun textToSpeech(text: String) {
+        throw MaestroException.InvalidCommand("textToSpeech requires a local iOS Simulator.")
+    }
+
     fun openLink(link: String, appId: String?, autoVerify: Boolean, browser: Boolean)
 
     fun hideKeyboard()

@@ -3,6 +3,7 @@ package ios
 import com.github.michaelbull.result.*
 import device.IOSDevice
 import device.IOSScreenRecording
+import device.SimctlIOSDevice
 import xcuitest.api.DeviceInfo
 import ios.xctest.XCTestIOSDevice
 import okio.Sink
@@ -20,6 +21,9 @@ class LocalIOSDevice(
     private val deviceController: IOSDevice,
     private val insights: Insights = NoopInsights
 ) : IOSDevice {
+
+    val localSimulatorId: String?
+        get() = (deviceController as? SimctlIOSDevice)?.deviceId
 
     private val executor by lazy { Executors.newSingleThreadScheduledExecutor() }
 

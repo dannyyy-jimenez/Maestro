@@ -46,6 +46,7 @@ import maestro.orchestra.HideKeyboardCommand
 import maestro.orchestra.InputRandomCommand
 import maestro.orchestra.InputRandomType
 import maestro.orchestra.InputTextCommand
+import maestro.orchestra.TextToSpeechCommand
 import maestro.orchestra.KillAppCommand
 import maestro.orchestra.LaunchAppCommand
 import maestro.orchestra.MaestroCommand
@@ -110,6 +111,7 @@ data class YamlFluentCommand(
     val pasteText: YamlActionPasteText? = null,
     val scroll: YamlActionScroll? = null,
     val inputText: YamlInputText? = null,
+    val textToSpeech: String? = null,
     val inputRandomText: YamlInputRandomText? = null,
     val inputRandomNumber: YamlInputRandomNumber? = null,
     val inputRandomEmail: YamlInputRandomEmail? = null,
@@ -253,6 +255,7 @@ data class YamlFluentCommand(
                     addMediaCommand = addMediaCommand(addMedia, context)
                 )
             )
+            textToSpeech != null -> listOf(MaestroCommand(TextToSpeechCommand(textToSpeech)))
             inputText != null -> listOf(MaestroCommand(InputTextCommand(text = inputText.text, label = inputText.label, optional = inputText.optional)))
             inputRandomText != null -> listOf(MaestroCommand(InputRandomCommand(inputType = InputRandomType.TEXT, length = inputRandomText.length, label = inputRandomText.label, optional = inputRandomText.optional)))
             inputRandomNumber != null -> listOf(MaestroCommand(InputRandomCommand(inputType = InputRandomType.NUMBER, length = inputRandomNumber.length, label = inputRandomNumber.label, optional = inputRandomNumber.optional)))

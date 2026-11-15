@@ -539,6 +539,19 @@ data class InputTextCommand(
     }
 }
 
+data class TextToSpeechCommand(val text: String) : Command {
+
+    override val label: String? get() = null
+    override val optional: Boolean get() = false
+
+    override val originalDescription: String
+        get() = "Speak text into the simulator microphone"
+
+    override fun evaluateScripts(jsEngine: JsEngine): TextToSpeechCommand {
+        return copy(text = text.evaluateScripts(jsEngine))
+    }
+}
+
 data class LaunchAppCommand(
     val appId: String,
     val clearState: Boolean? = null,

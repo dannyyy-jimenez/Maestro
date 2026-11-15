@@ -424,6 +424,18 @@ class IntegrationTest {
     }
 
     @Test
+    fun `textToSpeech evaluates YAML text and dispatches it to the driver`() {
+        val driver = driver {}
+        val commands = readCommands("text_to_speech")
+
+        Maestro(driver).use {
+            runBlocking { orchestra(it).runFlow(commands) }
+        }
+
+        driver.assertHasEvent(Event.TextToSpeech("Hello, I'd like to order a burger."))
+    }
+
+    @Test
     fun `Case 013 - Launch app`() {
         // Given
         val commands = readCommands("013_launch_app")

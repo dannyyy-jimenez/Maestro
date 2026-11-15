@@ -23,6 +23,7 @@ import com.github.michaelbull.result.expect
 import device.IOSDevice
 import hierarchy.AXElement
 import ios.IOSDeviceErrors
+import ios.LocalIOSDevice
 import maestro.utils.network.XCUITestServerError
 import maestro.Capability
 import maestro.DeviceInfo
@@ -441,6 +442,14 @@ class IOSDriver(
                 override val startedAt: Instant = iosScreenRecording.startedAt
                 override fun close() = iosScreenRecording.close()
             }
+        }
+    }
+
+    override fun textToSpeech(text: String) {
+        val simulatorId = (iosDevice as? LocalIOSDevice)?.localSimulatorId
+            ?: return super.textToSpeech(text)
+        metrics.measured("operation", mapOf("command" to "textToSpeech")) {
+            SimulatorSpeech.speak(simulatorId, text)
         }
     }
 

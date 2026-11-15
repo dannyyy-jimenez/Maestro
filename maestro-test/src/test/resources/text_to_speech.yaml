@@ -1,0 +1,5 @@
+appId: com.example.app
+env:
+  ITEM: burger
+---
+- textToSpeech: "Hello, I'd like to order a ${ITEM}."

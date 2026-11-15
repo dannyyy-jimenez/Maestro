@@ -301,6 +301,11 @@ open class FakeDriver : Driver {
         events += Event.EraseAllText
     }
 
+    override fun textToSpeech(text: String) {
+        ensureOpen()
+        events += Event.TextToSpeech(text)
+    }
+
     override fun inputText(text: String) {
         ensureOpen()
 
@@ -472,6 +477,8 @@ open class FakeDriver : Driver {
         object BackPress : Event(), UserInteraction
 
         object HideKeyboard : Event(), UserInteraction
+
+        data class TextToSpeech(val text: String) : Event(), UserInteraction
 
         data class InputText(
             val text: String
