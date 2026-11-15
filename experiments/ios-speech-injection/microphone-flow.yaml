@@ -1,0 +1,10 @@
+appId: org.maestro.local-mic-probe
+---
+- launchApp:
+    permissions:
+      microphone: allow
+- tapOn: Start recording
+- assertVisible: Recording
+- textToSpeech: "Hello, I'd like to order a burger."
+- tapOn: Stop recording
+- assertVisible: Audio captured

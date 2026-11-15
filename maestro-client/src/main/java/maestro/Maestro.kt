@@ -583,6 +583,11 @@ class Maestro(
         driver.waitForAppToSettle(initialHierarchy, appId, waitToSettleTimeoutMs)
     }
 
+    suspend fun textToSpeech(text: String) {
+        if (text.isBlank()) throw MaestroException.InvalidCommand("textToSpeech requires non-blank text.")
+        runInterruptible(Dispatchers.IO) { driver.textToSpeech(text) }
+    }
+
     suspend fun inputText(text: String) {
         LOGGER.info("Inputting text: $text")
 

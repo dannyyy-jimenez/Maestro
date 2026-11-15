@@ -460,6 +460,10 @@ class Orchestra(
             is AssertWithAICommand -> assertWithAICommand(command, maestroCommand)
             is ExtractTextWithAICommand -> extractTextWithAICommand(command, maestroCommand)
             is InputTextCommand -> inputTextCommand(command)
+            is TextToSpeechCommand -> {
+                maestro.textToSpeech(command.text)
+                true
+            }
             is InputRandomCommand -> inputTextRandomCommand(command)
             is LaunchAppCommand -> launchAppCommand(command)
             is SetPermissionsCommand -> setPermissionsCommand(command)

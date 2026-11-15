@@ -27,6 +27,7 @@ import maestro.orchestra.ExtractTextWithAICommand
 import maestro.orchestra.HideKeyboardCommand
 import maestro.orchestra.InputRandomCommand
 import maestro.orchestra.InputTextCommand
+import maestro.orchestra.TextToSpeechCommand
 import maestro.orchestra.KillAppCommand
 import maestro.orchestra.LaunchAppCommand
 import maestro.orchestra.MaestroCommand
@@ -204,6 +205,7 @@ class RunOutputStaysInBundleTest {
             HideKeyboardCommand::class,
             InputRandomCommand::class,
             InputTextCommand::class,
+            TextToSpeechCommand::class,
             KillAppCommand::class,
             LaunchAppCommand::class,
             OpenLinkCommand::class,
